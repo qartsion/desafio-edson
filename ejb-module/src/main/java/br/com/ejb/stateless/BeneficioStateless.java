@@ -1,10 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package br.com.ejb.stateless;
 
-import br.com.ejb.local.BenefioLocal;
+
+
+import br.com.ejb.interfaces.BeneficioRemoto;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -15,7 +14,7 @@ import java.math.BigDecimal;
  * @author Edson
  */
 @Stateless
-public class BeneficioStateless implements BenefioLocal
+public class BeneficioStateless implements BeneficioRemoto
 {
     @PersistenceContext
     private EntityManager em;

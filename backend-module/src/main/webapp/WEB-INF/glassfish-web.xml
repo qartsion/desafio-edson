@@ -22,4 +22,11 @@
       <description>Keep a copy of the generated servlet class' java code.</description>
     </property>
   </jsp-config>
+  <!-- Desativa CDI só para esta aplicação -->
+  <!--<property name="useCdi" value="false"/>
+    
+    <property name="disableCdi" value="true"/>-->
+  <property name="implicitCdiEnabled" value="false"/>
+
+  
 </glassfish-web-app>

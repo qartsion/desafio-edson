@@ -1,15 +1,18 @@
+package br.com.ejb.interfaces;
 
-package br.com.ejb.local;
 
-import jakarta.ejb.Local;
+
+
+import jakarta.ejb.Remote;
 import java.math.BigDecimal;
 
 /**
  *
  * @author Edson
  */
-@Local
-public interface BenefioLocal {
+@Remote
+public interface BeneficioRemoto 
+{
     public void transfer(Long fromId, Long toId, BigDecimal amount);
     
 }
