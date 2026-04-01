@@ -20,6 +20,7 @@ public class ConexaoBanco
             return DriverManager.getConnection(URL, USER, PASSWORD);
         } catch (SQLException ex) {
             LOGGER.log(Level.SEVERE, "Erro ao conectar ao banco", ex);
+            throw new RuntimeException("Não foi possível conectar com banco de dados!");
         } catch (ClassNotFoundException ex) {
             System.getLogger(ConexaoBanco.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
