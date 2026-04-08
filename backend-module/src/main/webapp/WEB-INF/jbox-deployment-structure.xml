@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<deployment>
+    <dependencies>
+      <module name="br.com.ejb.interfaces"/>
+    </dependencies>
+</deployment>
+
+

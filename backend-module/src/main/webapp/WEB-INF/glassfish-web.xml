@@ -27,6 +27,4 @@
     
     <property name="disableCdi" value="true"/>-->
   <property name="implicitCdiEnabled" value="false"/>
-
-  
 </glassfish-web-app>

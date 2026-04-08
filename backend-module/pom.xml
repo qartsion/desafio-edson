@@ -6,7 +6,7 @@
 
     <groupId>br.com.backend</groupId>
     <artifactId>backend-module</artifactId>
-    <version>0.0.1</version>
+    <version>1.0.0</version>
     <packaging>war</packaging>
     
     
@@ -15,14 +15,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jakartaee.version>11.0.0</jakartaee.version>
     </properties>
-    <!--
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>4.0.1</version> 
-        <relativePath/>
-    </parent>
-    -->
+
+
     <dependencies>
         
         <!-- Núcleo do Spring -->
@@ -76,6 +70,7 @@
             <groupId>jakarta.ejb</groupId>
             <artifactId>jakarta.ejb-api</artifactId>
             <version>4.0.1</version>
+            <scope>compile</scope>
             <type>jar</type>
         </dependency>
         
@@ -83,19 +78,22 @@
             <groupId>br.com</groupId>
             <artifactId>ejb-interfaces</artifactId>
             <version>1.0</version>
-            <scope>provided</scope>
+            <scope>compile</scope>
         </dependency>
-    
+        
+        <dependency>
+            <groupId>com.kloudtek.mule.elogging</groupId>
+            <artifactId>mule-elogging-log4j2</artifactId>
+            <version>0.9.3</version>
+            <scope>test</scope>
+            <type>jar</type>
+        </dependency>
+        
     </dependencies>
 
+
     <build>
-        <plugins>
-            <!--
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-            -->
+        <plugins>    
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -105,7 +103,6 @@
                     <target>${java.version}</target>
                 </configuration>
             </plugin>
-
         </plugins>
     </build>
 </project>

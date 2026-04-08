@@ -1,7 +1,7 @@
-
 package br.com.backend.controller;
 
 import br.com.ejb.interfaces.CalculadoraRemoto;
+import static java.lang.System.exit;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -9,35 +9,41 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- *
- * @author Edson
- */
 @RestController
 @RequestMapping("/api/calculadora")
-public class CalculadoraController 
-{
-   @GetMapping
-    public String getSoma() 
-    {
-       Context ctx = null;
-       CalculadoraRemoto servico = null;
-       
-       try {
-           ctx = new InitialContext();
-       } catch (NamingException ex) {
-           System.getLogger(CalculadoraController.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
-       }
+public class CalculadoraController {
 
-       try {
-            servico = (CalculadoraRemoto) ctx.lookup("java:global/ejb-module/CalculadoraStateless!br.com.ejb.interfaces.CalculadoraRemoto");
-       } catch (NamingException ex) {
-           System.getLogger(CalculadoraController.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
-       }
-       
-       return String.valueOf("Soma é: "+ "" +servico.somar(1, 2));
-    }   
+    @GetMapping
+    public String getSoma() {
+        CalculadoraRemoto servico = null;
+
+        try {
+            Context ctx = new InitialContext();
+
+            // Nome JNDI baseado na classe CalculadoraStateless
+            servico = (CalculadoraRemoto) ctx.lookup(
+                "java:global/ejb-module-1.0/CalculadoraStateless!br.com.ejb.interfaces.CalculadoraRemoto"
+            );
+            //    "java:jboss/exported/ejb-module-1.0/CalculadoraStateless!br.com.ejb.interfaces.CalculadoraRemoto"
+
+        } catch (NamingException ex) {
+            System.getLogger(CalculadoraController.class.getName())
+                  .log(System.Logger.Level.ERROR, "Erro no lookup JNDI", ex);
+        } catch (Exception e){
+            e.printStackTrace();
+            throw new RuntimeException(e.getMessage());
+        }
+        
+        if (servico == null) {
+            return "Erro: EJB CalculadoraRemoto não encontrado via JNDI.";
+        }
+
+        double resultado = servico.somar(1, 2);
+        return "Soma é: " + resultado;
+    }
 }
+
+
 
 /*
     Quando não é especificado no GetMapping, ele retorna o que e resiação está
