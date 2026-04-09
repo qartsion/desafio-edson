@@ -1,49 +1,18 @@
 
-package br.com.ejb.pojo;
+package br.com.backend.pojo;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import java.io.Serializable;
 
-/**
- *
- * @author Edson
- */
-@Entity
-@Table(name = "beneficio")
+
 public class Beneficio implements Serializable
 {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
-    @Column(nullable = false, length = 100)
     private String nome;
-    
-    @Column(length = 255)
     private String descricao;
-    
-    @Column(nullable = false)
     private double valor;
-    
-    @Column(nullable = false)
-    private boolean ativo;
-    
-    public Beneficio(){}
-    
-    public Beneficio(int id, String nome, String descricao, double valor, boolean ativo)
-    {
-        this.id = id;
-        this.nome = nome;
-        this.descricao = descricao;
-        this.valor = valor;
-        this.ativo = ativo;
-    }
-    
+    private boolean ativo;  
+   
+
     public int getId() {
         return id;
     }
@@ -83,5 +52,6 @@ public class Beneficio implements Serializable
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
     }
+  
     
 }

@@ -4,10 +4,13 @@ package br.com.ejb.stateless;
 
 
 import br.com.ejb.interfaces.BeneficioRemoto;
+import br.com.ejb.pojo.Beneficio;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.LockModeType;
 import jakarta.persistence.PersistenceContext;
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  *
@@ -16,20 +19,39 @@ import java.math.BigDecimal;
 @Stateless
 public class BeneficioStateless implements BeneficioRemoto
 {
-    @PersistenceContext
+  
+    @PersistenceContext//(unitName = "desafioPU")
     private EntityManager em;
 
+        @Override
+        public void transfer(Long fromId, Long toId, BigDecimal amount)
+        {
+            Beneficio from = em.find(Beneficio.class, fromId, LockModeType.PESSIMISTIC_WRITE);
+            Beneficio to   = em.find(Beneficio.class, toId, LockModeType.PESSIMISTIC_WRITE);
+
+            if (from == null || to == null) {
+                throw new IllegalArgumentException("Conta origem ou destino inexistente");
+            }
+            if (amount == null || amount.compareTo(BigDecimal.ZERO) <= 0) {
+                throw new IllegalArgumentException("Valor inválido para transferência");
+            }
+            if (BigDecimal.valueOf(from.getValor()).compareTo(amount) < 0) {
+                throw new IllegalStateException("Saldo insuficiente");
+            }
+
+            // Atualiza valores
+            from.setValor(from.getValor() - amount.doubleValue());
+            to.setValor(to.getValor() + amount.doubleValue());
+
+            em.merge(from);
+            em.merge(to);
+        }
+
     @Override
-    public void transfer(Long fromId, Long toId, BigDecimal amount) {
-      //  Beneficio from = em.find(Beneficio.class, fromId);
-      //  Beneficio to   = em.find(Beneficio.class, toId);
+    public List<Beneficio> listAll() 
+    {
+         return em.createQuery("SELECT b FROM Beneficio b", Beneficio.class)
+                 .getResultList();
+    }
 
-        // BUG: sem validações, sem locking, pode gerar saldo negativo e lost update
-       /* from.setValor(from.getValor().subtract(amount));
-        to.setValor(to.getValor().add(amount));
-
-        em.merge(from);
-        em.merge(to);
-*/
-    }   
 }

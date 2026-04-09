@@ -21,7 +21,7 @@ public class BeneficioDao
         List<Beneficio> beneficios = null;
         String sql = "SELECT ID, NOME, DESCRICAO, VALOR, ATIVO FROM BENEFICIO";
 
-        try (Connection conn = ConexaoBanco.getConnection();
+        try (Connection conn = ConexaoBanco.getConexaoLocal();
              PreparedStatement ps = conn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
             
