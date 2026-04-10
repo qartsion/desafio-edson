@@ -36,31 +36,34 @@ export class App implements OnInit
     }
 
 
-    transferir(): void {
-        if (!this.fromId || !this.toId || !this.amount || this.amount <= 0) {
-          this.mensagem.set('Preencha todos os campos corretamente');
-          return;
+    transferir(): void 
+    {
+        if (!this.fromId || !this.toId || !this.amount || this.amount <= 0) 
+        {
+            this.mensagem.set('Preencha todos os campos corretamente');
+            return;
         }
 
         this.beneficioService.transfer(this.fromId, this.toId, this.amount).subscribe({
-          next: (msg: string) => this.mensagem.set(msg),
-          error: (err) => {
-            // Mostra status e mensagem do backend
-            console.error('Erro na transferência:', err);
+            next: (msg: string) => {
+             this.mensagem.set(msg);
+             // Atualiza a lista após sucesso
+             this.ngOnInit();
+            },
+            error: (err) => {
+                console.error('Erro na transferência:', err);
 
-            if (err.error && typeof err.error === 'string') {
-              // Se o backend devolveu texto simples
-              this.mensagem.set(`Erro: ${err.error}`);
-            } else if (err.error && err.error.message) {
-              // Se devolveu JSON com campo "message"
-              this.mensagem.set(`Erro: ${err.error.message}`);
-            } else {
-              // Fallback genérico
-              this.mensagem.set(`Erro na transferência (status ${err.status})`);
+                if (err.error && typeof err.error === 'string') {
+                  this.mensagem.set(`Erro: ${err.error}`);
+                } else if (err.error && err.error.message) {
+                  this.mensagem.set(`Erro: ${err.error.message}`);
+                } else {
+                  this.mensagem.set(`Erro na transferência (status ${err.status})`);
+                }
             }
-          }
         });
     }
+
 
 
 }
