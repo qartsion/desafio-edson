@@ -1,5 +1,7 @@
 package br.com.ejb.resources;
 
+
+
 import br.com.ejb.dao.BeneficioDao;
 import br.com.ejb.exception.ExceptionVazio;
 import br.com.ejb.pojo.Beneficio;
@@ -11,10 +13,13 @@ import jakarta.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import org.junit.jupiter.api.Test;
+
 
 @Path("/beneficio")
 public class BeneficioService {
 
+    //@Test
     @GET
     @Path("/listar")
     @Produces(MediaType.APPLICATION_JSON)

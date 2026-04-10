@@ -1,7 +1,6 @@
 package br.com.backend.controller;
 
 import br.com.ejb.interfaces.CalculadoraRemoto;
-import static java.lang.System.exit;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;

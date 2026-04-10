@@ -20,43 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/beneficios")
 public class BeneficioController {
 
-    /*
-    @GetMapping
-    public List<String> list() {
-        return Arrays.asList("Beneficio A", "Beneficio B");
-    }
-    */
-    /*
-    @GetMapping
-    public List<Beneficio> listAll()
-    {
-        BeneficioRemoto servico = null;
 
-        try {
-            Context ctx = new InitialContext();
-
-            // Nome JNDI baseado na classe CalculadoraStateless
-            servico = (BeneficioRemoto) ctx.lookup(
-                "java:global/ejb-module-1.0/BeneficioStateless!br.com.ejb.interfaces.BeneficioRemoto"
-            );
-
-        } catch (NamingException ex) {
-            System.getLogger(CalculadoraController.class.getName())
-                  .log(System.Logger.Level.ERROR, "Erro no lookup JNDI", ex);
-        } catch (Exception e){
-            e.printStackTrace();
-            throw new RuntimeException(e.getMessage());
-        }
-        
-        if (servico != null) {
-            return (List<Beneficio>) servico.listAll();
-        }
-
-        return null; //serviço não econtrado
-    }
-    */
-    
-    //@CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(produces = "application/json")
     public ResponseEntity<List<Beneficio>> listAll() 
     {

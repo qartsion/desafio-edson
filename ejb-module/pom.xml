@@ -22,20 +22,35 @@
             <scope>provided</scope>
         </dependency>
 
-    <dependency>
-        <groupId>br.com</groupId>
-        <artifactId>ejb-interfaces</artifactId>
-        <version>1.0</version>
-        <type>jar</type>
-    </dependency>
-    
-    <dependency>
-        <groupId>org.mariadb.jdbc</groupId>
-        <artifactId>mariadb-java-client</artifactId>
-        <version>3.5.7</version> 
-    </dependency>
+        <dependency>
+            <groupId>br.com</groupId>
+            <artifactId>ejb-interfaces</artifactId>
+            <version>1.0</version>
+            <type>jar</type>
+        </dependency>
 
+        <dependency>
+            <groupId>org.mariadb.jdbc</groupId>
+            <artifactId>mariadb-java-client</artifactId>
+            <version>3.5.7</version> 
+        </dependency>
 
+   
+        <dependency>
+            <groupId>cn.cocowwy</groupId>
+            <artifactId>meituan-spring-boot-test</artifactId>
+            <version>1.0.0</version>
+            <scope>test</scope>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>com.kloudtek.mule.elogging</groupId>
+            <artifactId>mule-elogging-log4j2</artifactId>
+            <version>0.9.3</version>
+            <scope>test</scope>
+            <type>jar</type>
+        </dependency>
+        
     </dependencies>
     
     <build>

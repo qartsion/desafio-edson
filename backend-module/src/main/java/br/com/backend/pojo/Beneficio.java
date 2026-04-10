@@ -11,8 +11,17 @@ public class Beneficio implements Serializable
     private String descricao;
     private double valor;
     private boolean ativo;  
-   
 
+    public Beneficio(int id, String nome, String descricao, double valor, boolean ativo) {
+        this.id = id;
+        this.nome = nome;
+        this.descricao = descricao;
+        this.valor = valor;
+        this.ativo = ativo;
+    }
+   
+    public Beneficio(){}
+    
     public int getId() {
         return id;
     }
