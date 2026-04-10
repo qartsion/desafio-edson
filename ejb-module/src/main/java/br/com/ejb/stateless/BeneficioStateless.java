@@ -26,8 +26,8 @@ public class BeneficioStateless implements BeneficioRemoto
         @Override
         public void transfer(Long fromId, Long toId, BigDecimal amount)
         {
-            Beneficio from = em.find(Beneficio.class, fromId, LockModeType.PESSIMISTIC_WRITE);
-            Beneficio to   = em.find(Beneficio.class, toId, LockModeType.PESSIMISTIC_WRITE);
+            Beneficio from = em.find(Beneficio.class, fromId.intValue(), LockModeType.PESSIMISTIC_WRITE);
+            Beneficio to   = em.find(Beneficio.class, toId.intValue(), LockModeType.PESSIMISTIC_WRITE);
 
             if (from == null || to == null) {
                 throw new IllegalArgumentException("Conta origem ou destino inexistente");

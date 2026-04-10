@@ -1,0 +1,44 @@
+
+
+
+<main>
+  <h2>{{ title() }}</h2>
+
+  <h3>Lista de Benefícios</h3>
+  <ul>
+    <li *ngFor="let b of beneficios()">
+      {{ b.id }} - {{ b.nome }} - {{ b.valor }}
+    </li>
+  </ul>
+
+ <form (ngSubmit)="transferir()" #form="ngForm">
+      <table>
+          <tr>
+              <td><label>Origem (ID):</label></td>
+              <td><input type="number" [(ngModel)]="fromId" name="fromId" required /></td>
+          </tr>
+          <tr>
+              <td><label>Destino (ID):</label></td>
+              <td><input type="number" [(ngModel)]="toId" name="toId" required /></td>
+          </tr>
+          <tr>
+              <td>  <label>Valor:</label></td>
+              <td><input type="number" [(ngModel)]="amount" name="amount" required /></td>
+          </tr>
+          <tr>
+              <td><button type="submit">Transferir</button></td>
+          </tr>
+    </table>
+  </form>
+  
+
+
+  <p>{{ mensagem() }}</p>
+
+  <router-outlet></router-outlet>
+</main>
+
+
+
+
+<!-- <router-outlet /> -->

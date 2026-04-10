@@ -9,6 +9,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -55,7 +56,8 @@ public class BeneficioController {
     }
     */
     
-    @GetMapping
+    //@CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping(produces = "application/json")
     public ResponseEntity<List<Beneficio>> listAll() 
     {
         BeneficioRemoto servico = null;
@@ -88,7 +90,7 @@ public class BeneficioController {
         // Retorna 200 OK com a lista
         return ResponseEntity.ok(beneficios);
     }
-    
+
 
     @PostMapping(value = "/transfer", 
                 consumes = "application/x-www-form-urlencoded", 
