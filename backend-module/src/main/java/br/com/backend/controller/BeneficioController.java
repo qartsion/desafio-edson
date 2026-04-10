@@ -32,7 +32,7 @@ public class BeneficioController {
                 "java:global/ejb-module-1.0/BeneficioStateless!br.com.ejb.interfaces.BeneficioRemoto"
             );
         } catch (NamingException ex) {
-            System.getLogger(CalculadoraController.class.getName())
+            System.getLogger(BeneficioController.class.getName())
                   .log(System.Logger.Level.ERROR, "Erro no lookup JNDI", ex);
         } catch (Exception e) {
             e.printStackTrace();
