@@ -74,3 +74,10 @@ Para executar este projeto, é necessário ter instalado:
 
 &#x20;  cp target/backend-module.war $WILDFLY\_HOME/standalone/deployments/
 
+
+## Configuração do Banco de Dados (MariaDB)
+
+1. Instale o MariaDB.
+2. Crie o banco de dados:
+3. Utilize o sql da pasta db
+
